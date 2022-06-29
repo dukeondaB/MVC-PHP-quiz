@@ -1,0 +1,41 @@
+<?php $_shouldextend[1]=1; ?> <?php $this->startSection('content'); ?>
+<div class="container">
+ <table class="table">
+ <thead>
+ <th class="col-2">Mã môn</th>
+ <th>Tên môn</th>
+ <th>Số quiz</th>
+ <th class="col-3">
+ <a class="btn btn-success" href=" <?php echo \htmlentities(BASE_URL . 'mon-hoc/tao-moi', ENT_QUOTES, 'UTF-8', false); ?>">Tạo mới</a>
+ </th>
+ </thead>
+ <tbody>
+ <?php $__currentLoopData = $subjects; $this->addLoop($__currentLoopData);$this->getFirstLoop();
+ foreach($__currentLoopData as $sub): $loop = $this->incrementLoopIndices();  ?>
+ <tr>
+ <td><?php echo \htmlentities($sub->id, ENT_QUOTES, 'UTF-8', false); ?></td>
+ <td>
+ <?php echo \htmlentities($sub->name, ENT_QUOTES, 'UTF-8', false); ?>
+
+ </td>
+ <td>
+ <?php echo \htmlentities(count($sub->Quizs), ENT_QUOTES, 'UTF-8', false); ?>
+
+ </td>
+ <td>
+ <a class="btn btn-primary" href="<?php echo \htmlentities(BASE_URL . 'mon-hoc/cap-nhat/' . $sub->id, ENT_QUOTES, 'UTF-8', false); ?>">Sửa</a>
+ &nbsp;
+ <a class="btn btn-danger" href="<?php echo \htmlentities(BASE_URL . 'mon-hoc/xoa/' . $sub->id, ENT_QUOTES, 'UTF-8', false); ?>">Xóa</a>
+ &nbsp;
+ <a class="btn btn-secondary" href="<?php echo \htmlentities(BASE_URL . 'quiz/' . $sub->id, ENT_QUOTES, 'UTF-8', false); ?>">Xem chi tiết</a>
+ </td>
+ </tr>
+ <?php endforeach; $this->popLoop(); $loop = $this->getFirstLoop(); ?>
+ </tbody>
+ </table>
+</div>
+<?php $this->stopSection(); ?> <?php $this->startSection('page-script'); ?>
+<script>
+</script>
+<?php $this->stopSection(); ?>
+<?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.client.main'); } ?>
